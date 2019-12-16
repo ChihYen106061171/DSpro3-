@@ -43,6 +43,7 @@ void algorithm_A(Board board, Player player, int index[]){
     int color = player.get_color(); //out color
     int s[5][6];  //score;
     
+    //red
     //score initialize
     for(i=0;i<5;i++){
         for(j=0;j<6;j++){
@@ -120,17 +121,135 @@ void algorithm_A(Board board, Player player, int index[]){
                 }
 
             } //end(0,0)
+            
 
             else if ( i==0 && j==5 ){
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1; //enmy
+                else {
+                    if(board.get_orbs_num(i, j)==0) { //empty w 
+                    
+                        if( (board.get_orbs_num(0,4)==0) &&  (board.get_orbs_num(1,5)==0))  s[i][j] = 10000;
+                        else if( (board.get_orbs_num(0,4)==2) ||  (board.get_orbs_num(1,5)==2) ) {
+                            if( ((board.get_cell_color(1,5)!=color) && (board.get_orbs_num(1,5)!=0 ))|| 
+                            ((board.get_cell_color(0,4) != color ) &&  (board.get_orbs_num(0,4)!=0)) ){
+                                s[i][j] = 1;
+                            }
+                            else{
+                                s[i][j] = 15000;
+                            }
+                        }
+                        else{
+                            s[i][j] = 10000;
+                        }
 
-            }
+                    } //end empty
+
+                    //one on 
+                    else {
+                           if ( ((board.get_orbs_num(0,4)==2)&&(board.get_cell_color(0,4) != color)) ||
+                           ((board.get_orbs_num(1,5)==2)&&(board.get_cell_color(1,5) != color))  )  {
+                               s[i][j] = 20000;
+                           }
+                           else if( ((board.get_orbs_num(0,4)==1)&&(board.get_cell_color(0,4) != color)) ||
+                           ((board.get_orbs_num(1,5)==1)&&(board.get_cell_color(1,5) != color)) )
+                           {
+                               s[i][j] = 15000;
+                           }
+                           else
+                           {
+                               s[i][j] = 1;
+                           }
+                    }
+
+
+                }
+
+
+            }//end (0,5)
             else if ( i==4 && j==0 ){
-                
-            }
-            else if ( i==4 && j==5 ){
-                
-            }
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1; //enmy
+                else {
+                    if(board.get_orbs_num(i, j)==0) { //empty w 
+                    
+                        if( (board.get_orbs_num(4,1)==0) &&  (board.get_orbs_num(3,0)==0))  s[i][j] = 10000;
+                        else if( (board.get_orbs_num(4,1)==2) ||  (board.get_orbs_num(3,0)==2) ) {
+                            if( ((board.get_cell_color(3,0)!=color) && (board.get_orbs_num(3,0)!=0 ))|| 
+                            ((board.get_cell_color(4,1) != color ) &&  (board.get_orbs_num(4,1)!=0)) ){
+                                s[i][j] = 1;
+                            }
+                            else{
+                                s[i][j] = 15000;
+                            }
+                        }
+                        else{
+                            s[i][j] = 10000;
+                        }
 
+                    } //end empty
+
+                    //one on 
+                    else {
+                           if ( ((board.get_orbs_num(4,1)==2)&&(board.get_cell_color(4,1) != color)) ||
+                           ((board.get_orbs_num(3,0)==2)&&(board.get_cell_color(3,0) != color))  )  {
+                               s[i][j] = 20000;
+                           }
+                           else if( ((board.get_orbs_num(4,1)==1)&&(board.get_cell_color(4,1) != color)) ||
+                           ((board.get_orbs_num(3,0)==1)&&(board.get_cell_color(3,0) != color)) )
+                           {
+                               s[i][j] = 15000;
+                           }
+                           else
+                           {
+                               s[i][j] = 1;
+                           }
+                    }
+
+
+                }
+                
+            }//end (4,0)
+            else if ( i==4 && j==5 ){
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1; //enmy
+                else {
+                    if(board.get_orbs_num(i, j)==0) { //empty w 
+                    
+                        if( (board.get_orbs_num(4,4)==0) &&  (board.get_orbs_num(3,5)==0))  s[i][j] = 10000;
+                        else if( (board.get_orbs_num(4,4)==2) ||  (board.get_orbs_num(3,5)==2) ) {
+                            if( ((board.get_cell_color(3,5)!=color) && (board.get_orbs_num(3,5)!=0 ))|| 
+                            ((board.get_cell_color(4,4) != color ) &&  (board.get_orbs_num(4,4)!=0)) ){
+                                s[i][j] = 1;
+                            }
+                            else{
+                                s[i][j] = 15000;
+                            }
+                        }
+                        else{
+                            s[i][j] = 10000;
+                        }
+
+                    } //end empty
+
+                    //one on 
+                    else {
+                           if ( ((board.get_orbs_num(4,4)==2)&&(board.get_cell_color(4,4) != color)) ||
+                           ((board.get_orbs_num(3,5)==2)&&(board.get_cell_color(3,5) != color))  )  {
+                               s[i][j] = 20000;
+                           }
+                           else if( ((board.get_orbs_num(4,4)==1)&&(board.get_cell_color(4,4) != color)) ||
+                           ((board.get_orbs_num(3,5)==1)&&(board.get_cell_color(3,5) != color)) )
+                           {
+                               s[i][j] = 15000;
+                           }
+                           else
+                           {
+                               s[i][j] = 1;
+                           }
+                    }
+
+
+                }
+                
+            }  //end (4,5)
             //2
             else if ( i==0 && j==1 ){
                 
@@ -224,6 +343,7 @@ void algorithm_A(Board board, Player player, int index[]){
 
     } //end ifor //set the score
 
+    //choose optimal position
     for ( i = 0; i < 5; i++)
     {
         for ( j = 0; j < 6; j++)
