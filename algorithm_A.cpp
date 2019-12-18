@@ -63,7 +63,7 @@ void algorithm_A(Board board, Player player, int index[]){
     }
 
     //98*0.6 = 59    
-    if(total >= 30){  //reverse attack
+    if(total >= 60){  //reverse attack
         
         while(1){
         row = rand() % 5;
@@ -244,7 +244,7 @@ void algorithm_A(Board board, Player player, int index[]){
                            {
                                s[i][j] = 1;
                            }
-                    }
+                       }
 
 
                 }
@@ -252,33 +252,639 @@ void algorithm_A(Board board, Player player, int index[]){
             }  //end (4,5)
             //2
             else if ( i==0 && j==1 ){
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
+                else
+                {
+                    if( board.get_orbs_num(i,j)==0 ) {
+                        if( (board.get_cell_color(0, 0)!=color) && (board.get_cell_color(0, 0)!='w') ) s[i][j] = 1;
+                        else if( (board.get_cell_color(0, 0)==color) ){  
+                             if ( !( ( (board.get_cell_color(0, 2)!=color) && (board.get_orbs_num(0,2)==2) )&&
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) ) ){
+                                    s[i][j] = 9000;
+                            }
+                             else if(( (board.get_cell_color(0, 2)!=color) && (board.get_orbs_num(0,2)==2) )||
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) )
+                            {
+                                s[i][j] = 1;
+                                
+                            }
+                            else
+                                {
+                                    s[i][j] = 8000;
+                                }
+                         }
+                         else
+                         {
+                             if ( !( ( (board.get_cell_color(0, 2)!=color) && (board.get_orbs_num(0,2)==2) )&&
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) ) ){
+                                    s[i][j] = 4500;
+                            }
+                            else if(( (board.get_cell_color(0, 2)!=color) && (board.get_orbs_num(0,2)==2) )||
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                            else s[i][j] = 4000;
+                             
+                         }
+                         
+                        
+                   }
+
+
+
+                   else if (board.get_orbs_num(i,j)==1 ){
+                       if ( !( ( (board.get_cell_color(0, 2)!=color) && (board.get_orbs_num(0,2)==2) )&&
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) ) ){
+                                    s[i][j] = 2000;
+                            }
+                        else if(( (board.get_cell_color(0, 2)!=color) && (board.get_orbs_num(0,2)==2) )||
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                        else s[i][j] = 2000;
+                        
+                    }
+                   else
+                    {
+                        if ( ( ( (board.get_cell_color(0, 2)!=color) && (board.get_orbs_num(0,2)==2) )||
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) ) ){
+                                    s[i][j] = 14000;
+                            }
+                        else if ( board.get_cell_color(0, 2)!=color||board.get_cell_color(1, 1)!=color )
+                        {
+                            s[i][j] = 8000;
+                        }
+                        else s[i][j] = 10;
+                    }
+                    
+                   
+                }
                 
-            }
-            else if ( i==0 && j==4 ){
                 
-            }
+            }  //end (0,1)
+
+            else if ( i==0 && j==4 ){ 
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
+                else
+                {
+                    if( board.get_orbs_num(i,j)==0 ) {
+                        if( (board.get_cell_color(0, 5)!=color) && (board.get_cell_color(0, 5)!='w') ) s[i][j] = 1;
+                        else if( (board.get_cell_color(0, 5)==color) ){  
+                             if ( !( ( (board.get_cell_color(0, 3)!=color) && (board.get_orbs_num(0,3)==2) )&&
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) ) ){
+                                    s[i][j] = 9000;
+                            }
+                             else if(( (board.get_cell_color(0, 3)!=color) && (board.get_orbs_num(0,3)==2) )||
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) )
+                            {
+                                s[i][j] = 1;
+                                
+                            }
+                            else
+                                {
+                                    s[i][j] = 8000;
+                                }
+                         }
+                         else
+                         {
+                             if ( !( ( (board.get_cell_color(0, 3)!=color) && (board.get_orbs_num(0,3)==2) )&&
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) ) ){
+                                    s[i][j] = 4500;
+                            }
+                            else if(( (board.get_cell_color(0, 3)!=color) && (board.get_orbs_num(0,3)==2) )||
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                            else s[i][j] = 4000;
+                             
+                         }
+                         
+                        
+                   }
+
+
+
+                   else if (board.get_orbs_num(i,j)==1 ){
+                       if ( !( ( (board.get_cell_color(0, 3)!=color) && (board.get_orbs_num(0,3)==2) )&&
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) ) ){
+                                    s[i][j] = 2000;
+                            }
+                        else if(( (board.get_cell_color(0, 3)!=color) && (board.get_orbs_num(0,3)==2) )||
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                        else s[i][j] = 2000;
+                        
+                    }
+                   else
+                    {
+                        if ( ( ( (board.get_cell_color(0, 3)!=color) && (board.get_orbs_num(0,3)==2) )||
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) ) ){
+                                    s[i][j] = 14000;
+                            }
+                        else if ( board.get_cell_color(0, 3)!=color||board.get_cell_color(1, 4)!=color )
+                        {
+                            s[i][j] = 8000;
+                        }
+                        else s[i][j] = 10;
+                    }
+                    
+                   
+                }
+                
+            }//end (0,4)
+
             else if ( i==4 && j==1 ){
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
+                else
+                {
+                    if( board.get_orbs_num(i,j)==0 ) {
+                        if( (board.get_cell_color(4, 0)!=color) && (board.get_cell_color(4, 0)!='w') ) s[i][j] = 1;
+                        else if( (board.get_cell_color(4, 0)==color) ){  
+                             if ( !( ( (board.get_cell_color(4, 2)!=color) && (board.get_orbs_num(4,2)==2) )&&
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) ) ){
+                                    s[i][j] = 9000;
+                            }
+                             else if(( (board.get_cell_color(4, 2)!=color) && (board.get_orbs_num(4,2)==2) )||
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) )
+                            {
+                                s[i][j] = 1;
+                                
+                            }
+                            else
+                                {
+                                    s[i][j] = 8000;
+                                }
+                         }
+                         else
+                         {
+                             if ( !( ( (board.get_cell_color(4, 2)!=color) && (board.get_orbs_num(4,2)==2) )&&
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) ) ){
+                                    s[i][j] = 4500;
+                            }
+                            else if(( (board.get_cell_color(4, 2)!=color) && (board.get_orbs_num(4,2)==2) )||
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                            else s[i][j] = 4000;
+                             
+                         }
+                         
+                        
+                   }
+
+
+
+                   else if (board.get_orbs_num(i,j)==1 ){
+                       if ( !( ( (board.get_cell_color(4, 2)!=color) && (board.get_orbs_num(4,2)==2) )&&
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) ) ){
+                                    s[i][j] = 2000;
+                            }
+                        else if(( (board.get_cell_color(4, 2)!=color) && (board.get_orbs_num(4,2)==2) )||
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                        else s[i][j] = 2000;
+                        
+                    }
+                   else
+                    {
+                        if ( ( ( (board.get_cell_color(4, 2)!=color) && (board.get_orbs_num(4,2)==2) )||
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) ) ){
+                                    s[i][j] = 14000;
+                            }
+                        else if ( board.get_cell_color(4, 2)!=color||board.get_cell_color(3, 1)!=color )
+                        {
+                            s[i][j] = 8000;
+                        }
+                        else s[i][j] = 10;
+                    }
+                    
+                   
+                }
                 
             }
             else if ( i==4 && j==4 ){
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
+                else
+                {
+                    if( board.get_orbs_num(i,j)==0 ) {
+                        if( (board.get_cell_color(4, 5)!=color) && (board.get_cell_color(4, 5)!='w') ) s[i][j] = 1;
+                        else if( (board.get_cell_color(4, 5)==color) ){  
+                             if ( !( ( (board.get_cell_color(4, 3)!=color) && (board.get_orbs_num(4,3)==2) )&&
+                                ( (board.get_cell_color(3, 4)!=color) && (board.get_orbs_num(3,4)==3) ) ) ){
+                                    s[i][j] = 9000;
+                            }
+                             else if(( (board.get_cell_color(4, 3)!=color) && (board.get_orbs_num(4,3)==2) )||
+                                ( (board.get_cell_color(3, 4)!=color) && (board.get_orbs_num(3,4)==3) ) )
+                            {
+                                s[i][j] = 1;
+                                
+                            }
+                            else
+                                {
+                                    s[i][j] = 8000;
+                                }
+                         }
+                         else
+                         {
+                             if ( !( ( (board.get_cell_color(4, 3)!=color) && (board.get_orbs_num(4,3)==2) )&&
+                                ( (board.get_cell_color(3, 4)!=color) && (board.get_orbs_num(3,4)==3) ) ) ){
+                                    s[i][j] = 4500;
+                            }
+                            else if(( (board.get_cell_color(4, 3)!=color) && (board.get_orbs_num(4,3)==2) )||
+                                ( (board.get_cell_color(3, 4)!=color) && (board.get_orbs_num(3,4)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                            else s[i][j] = 4000;
+                             
+                         }
+                         
+                        
+                   }
+
+
+
+                   else if (board.get_orbs_num(i,j)==1 ){
+                       if ( !( ( (board.get_cell_color(4, 3)!=color) && (board.get_orbs_num(4,3)==2) )&&
+                                ( (board.get_cell_color(3, 4)!=color) && (board.get_orbs_num(3,4)==3) ) ) ){
+                                    s[i][j] = 2000;
+                            }
+                        else if(( (board.get_cell_color(4, 3)!=color) && (board.get_orbs_num(4,3)==2) )||
+                                ( (board.get_cell_color(3, 4)!=color) && (board.get_orbs_num(3,4)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                        else s[i][j] = 2000;
+                        
+                    }
+                   else
+                    {
+                        if ( ( ( (board.get_cell_color(4, 3)!=color) && (board.get_orbs_num(4,3)==2) )||
+                                ( (board.get_cell_color(3, 4)!=color) && (board.get_orbs_num(3,4)==3) ) ) ){
+                                    s[i][j] = 14000;
+                            }
+                        else if ( board.get_cell_color(4, 3)!=color||board.get_cell_color(3, 4)!=color )
+                        {
+                            s[i][j] = 8000;
+                        }
+                        else s[i][j] = 10;
+                    }
+                    
+                   
+                }
                 
-            }
+            }//end 4 4
             else if ( i==1 && j==0 ){ //2'
-                
-            }
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
+                else
+                {
+                    if( board.get_orbs_num(i,j)==0 ) {
+                        if( (board.get_cell_color(0, 0)!=color) && (board.get_cell_color(0, 0)!='w') ) s[i][j] = 1;
+                        else if( (board.get_cell_color(0, 0)==color) ){  
+                             if ( !( ( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )&&
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) ) ){
+                                    s[i][j] = 9000;
+                            }
+                             else if(( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )||
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) )
+                            {
+                                s[i][j] = 1;
+                                
+                            }
+                            else
+                                {
+                                    s[i][j] = 8000;
+                                }
+                         }
+                         else
+                         {
+                             if ( !( ( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )&&
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) ) ){
+                                    s[i][j] = 4500;
+                            }
+                            else if(( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )||
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                            else s[i][j] = 4000;
+                             
+                         }
+                         
+                        
+                   }
+
+
+
+                   else if (board.get_orbs_num(i,j)==1 ){
+                       if ( !( ( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )&&
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) ) ){
+                                    s[i][j] = 2000;
+                            }
+                        else if(( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )||
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                        else s[i][j] = 2000;
+                        
+                    }
+                   else
+                    {
+                        if ( ( ( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )||
+                                ( (board.get_cell_color(1, 1)!=color) && (board.get_orbs_num(1,1)==3) ) ) ){
+                                    s[i][j] = 14000;
+                            }
+                        else if ( board.get_cell_color(2, 0)!=color||board.get_cell_color(1, 1)!=color )
+                        {
+                            s[i][j] = 8000;
+                        }
+                        else s[i][j] = 10;
+                    }
+                    
+                   
+                }
+            } //end 10
             else if ( i==1 && j==5 ){
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
+                else
+                {
+                    if( board.get_orbs_num(i,j)==0 ) {
+                        if( (board.get_cell_color(0, 5)!=color) && (board.get_cell_color(0, 5)!='w') ) s[i][j] = 1;
+                        else if( (board.get_cell_color(0, 5)==color) ){  
+                             if ( !( ( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )&&
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) ) ){
+                                    s[i][j] = 9000;
+                            }
+                             else if(( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )||
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) )
+                            {
+                                s[i][j] = 1;
+                                
+                            }
+                            else
+                                {
+                                    s[i][j] = 8000;
+                                }
+                         }
+                         else
+                         {
+                             if ( !( ( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )&&
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) ) ){
+                                    s[i][j] = 4500;
+                            }
+                            else if(( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )||
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                            else s[i][j] = 4000;
+                             
+                         }
+                         
+                        
+                   }
+
+
+
+                   else if (board.get_orbs_num(i,j)==1 ){
+                       if ( !( ( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )&&
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) ) ){
+                                    s[i][j] = 2000;
+                            }
+                        else if(( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )||
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                        else s[i][j] = 2000;
+                        
+                    }
+                   else
+                    {
+                        if ( ( ( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )||
+                                ( (board.get_cell_color(1, 4)!=color) && (board.get_orbs_num(1,4)==3) ) ) ){
+                                    s[i][j] = 14000;
+                            }
+                        else if ( board.get_cell_color(2, 5)!=color||board.get_cell_color(1, 4)!=color )
+                        {
+                            s[i][j] = 8000;
+                        }
+                        else s[i][j] = 10;
+                    }
+                    
+                   
+                }
                 
             }
-            else if ( i==3 && j==0 ){
+            else if ( i==3 && j==0 ){//?if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
+                else
+                {
+                    if( board.get_orbs_num(i,j)==0 ) {
+                        if( (board.get_cell_color(4, 0)!=color) && (board.get_cell_color(4, 0)!='w') ) s[i][j] = 1;
+                        else if( (board.get_cell_color(4, 0)==color) ){  
+                             if ( !( ( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )&&
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) ) ){
+                                    s[i][j] = 9000;
+                            }
+                             else if(( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )||
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) )
+                            {
+                                s[i][j] = 1;
+                                
+                            }
+                            else
+                                {
+                                    s[i][j] = 8000;
+                                }
+                         }
+                         else
+                         {
+                             if ( !( ( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )&&
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) ) ){
+                                    s[i][j] = 4500;
+                            }
+                            else if(( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )||
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                            else s[i][j] = 4000;
+                             
+                         }
+                         
+                        
+                   }
+
+
+
+                   else if (board.get_orbs_num(i,j)==1 ){
+                       if ( !( ( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )&&
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) ) ){
+                                    s[i][j] = 2000;
+                            }
+                        else if(( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )||
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                        else s[i][j] = 2000;
+                        
+                    }
+                   else
+                    {
+                        if ( ( ( (board.get_cell_color(2, 0)!=color) && (board.get_orbs_num(2,0)==2) )||
+                                ( (board.get_cell_color(3, 1)!=color) && (board.get_orbs_num(3,1)==3) ) ) ){
+                                    s[i][j] = 14000;
+                            }
+                        else if ( board.get_cell_color(2, 0)!=color||board.get_cell_color(3, 1)!=color )
+                        {
+                            s[i][j] = 8000;
+                        }
+                        else s[i][j] = 10;
+                    }
+                    
+                   
+                }
+                
                 
             }
             else if ( i==3 && j==5 ){
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
+                else
+                {
+                    if( board.get_orbs_num(i,j)==0 ) {
+                        if( (board.get_cell_color(4, 5)!=color) && (board.get_cell_color(4, 5)!='w') ) s[i][j] = 1;
+                        else if( (board.get_cell_color(4, 5)==color) ){  
+                             if ( !( ( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )&&
+                                ( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==3) ) ) ){
+                                    s[i][j] = 9000;
+                            }
+                             else if(( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )||
+                                ( (board.get_cell_color(3, 4)!=color) && (board.get_orbs_num(3,4)==3) ) )
+                            {
+                                s[i][j] = 1;
+                                
+                            }
+                            else
+                                {
+                                    s[i][j] = 8000;
+                                }
+                         }
+                         else
+                         {
+                             if ( !( ( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )&&
+                                ( (board.get_cell_color(3, 4)!=color) && (board.get_orbs_num(3,4)==3) ) ) ){
+                                    s[i][j] = 4500;
+                            }
+                            else if(( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )||
+                                ( (board.get_cell_color(3, 4)!=color) && (board.get_orbs_num(3,4)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                            else s[i][j] = 4000;
+                             
+                         }
+                         
+                        
+                   }
+
+
+
+                   else if (board.get_orbs_num(i,j)==1 ){
+                       if ( !( ( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )&&
+                                ( (board.get_cell_color(3, 4)!=color) && (board.get_orbs_num(3,4)==3) ) ) ){
+                                    s[i][j] = 2000;
+                            }
+                        else if(( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )||
+                                ( (board.get_cell_color(3, 4)!=color) && (board.get_orbs_num(3,4)==3) ) )
+                            {
+                                s[i][j] = 1;
+                            }
+                        else s[i][j] = 2000;
+                        
+                    }
+                   else
+                    {
+                        if ( ( ( (board.get_cell_color(2, 5)!=color) && (board.get_orbs_num(2,5)==2) )||
+                                ( (board.get_cell_color(3, 4)!=color) && (board.get_orbs_num(3,4)==3) ) ) ){
+                                    s[i][j] = 14000;
+                            }
+                        else if ( board.get_cell_color(2, 5)!=color||board.get_cell_color(3, 4)!=color )
+                        {
+                            s[i][j] = 8000;
+                        }
+                        else s[i][j] = 10;
+                    }
+                    
+                   
+                }
                 
             }
 
             //3
             else if ( i==0 && j==2 ){
-                
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
+                else
+                {
+                    if( board.get_orbs_num(i,j)==2 ){
+                        if ( ( (board.get_cell_color(0, 1)!=color)&&(board.get_orbs_num(0, 1)==2))||
+                         ( (board.get_cell_color(0, 3)!=color)&&(board.get_orbs_num(0, 3)==2))||
+                          ( (board.get_cell_color(1, 2)!=color)&&(board.get_orbs_num(1, 2)==3))  )
+                        {
+                            s[i][j] = 12000;
+                        }
+                        else
+                        {
+                            s[i][j] = 20;
+                        }
+                        
+                        
+                    }
+                    else if (board.get_orbs_num(i,j)==1)
+                    {
+                        if( ( (board.get_cell_color(0, 1)!=color)&&(board.get_orbs_num(0, 1)==1))||
+                         ( (board.get_cell_color(0, 3)!=color)&&(board.get_orbs_num(0, 3)==1))||
+                          ( (board.get_cell_color(1, 2)!=color)&&(board.get_orbs_num(1, 2)==2)) ){
+                              s[i][j] = 8000;
+                          }
+                        else if ( ( (board.get_cell_color(0, 1)!=color)&&(board.get_orbs_num(0, 1)==2))||
+                         ( (board.get_cell_color(0, 3)!=color)&&(board.get_orbs_num(0, 3)==2))||
+                          ( (board.get_cell_color(1, 2)!=color)&&(board.get_orbs_num(1, 2)==3)))
+                        {
+                            s[i][j] = 10;
+                        }
+                        else s[i][j] = 2000;
+                    }
+                    else
+                    {
+                        if (  ( (board.get_cell_color(0, 1)!=color)&&(board.get_orbs_num(0, 1)>=1))||
+                         ( (board.get_cell_color(0, 3)!=color)&&(board.get_orbs_num(0, 3)>=1))||
+                          ( (board.get_cell_color(1, 2)!=color)&&(board.get_orbs_num(1, 2)>=2)) )
+                        {
+                            s[i][j] = 100;
+                        }
+                        else
+                        {
+                            s[i][j] = 9000;
+                        }
+                        
+                        
+                        
+                    }
+                    
+                    
+                    
+                }          
             }
             else if ( i==0 && j==3 ){
                 
