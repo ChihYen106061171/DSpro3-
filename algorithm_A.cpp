@@ -62,8 +62,9 @@ void algorithm_A(Board board, Player player, int index[]){
         
     }
 
-    //98*0.6 = 59    
-    if(total >= 60){  //reverse attack
+    //98*0.6 = 59
+    
+    if(total >= 99){  //reverse attack
         
         while(1){
         row = rand() % 5;
