@@ -35,10 +35,9 @@ void algorithm_A(Board board, Player player, int index[]){
 
     //////////// Random Algorithm ////////////
     // Here is the random algorithm for your reference, you can delete or comment it.
-    srand(time(NULL));
     int i,j,row,col;
     int max = -1;
-    int total = 0;
+    
     int currnum = 0;
     int color = player.get_color(); //out color
     int s[5][6];  //score;
@@ -51,29 +50,8 @@ void algorithm_A(Board board, Player player, int index[]){
         }
     }
 
-    //reverse attack?
-    for ( i = 0; i < 5; i++)
-    {
-        for ( j = 0; j < 6; j++)
-        {
-            currnum = board.get_orbs_num(i, j);
-            total = total + currnum;
-        }
-        
-    }
-
-    //98*0.6 = 59
     
-    if(total >= 99){  //reverse attack
-        
-        while(1){
-        row = rand() % 5;
-        col = rand() % 6;
-        if(board.get_cell_color(row, col) == color || board.get_cell_color(row, col) == 'w') break;
-       }
-
-    }
-    else{//set board first algo
+    
     
     for ( i = 0; i < 5; i++) //big for get score
     {
@@ -1778,16 +1756,11 @@ void algorithm_A(Board board, Player player, int index[]){
     }
     
     
-    } //end algo2 
+    
+    
+    
 
-    //delete while
-    /*while(1){
-
-        row = rand() % 5;
-        col = rand() % 6;
-        if(board.get_cell_color(row, col) == color || board.get_cell_color(row, col) == 'w') break;
-
-    }*/  //trash
+    
 
 
     index[0] = row; //row
