@@ -5,45 +5,20 @@
 
 using namespace std;
 
-/******************************************************
- * In your algorithm, you can just use the the funcitons
- * listed by TA to get the board information.(functions 
- * 1. ~ 4. are listed in next block) 
- * 
- * The STL library functions is not allowed to use.
-******************************************************/
 
-/*************************************************************************
- * 1. int board.get_orbs_num(int row_index, int col_index)
- * 2. int board.get_capacity(int row_index, int col_index)
- * 3. char board.get_cell_color(int row_index, int col_index)
- * 4. void board.print_current_board(int row_index, int col_index, int round)
- * 
- * 1. The function that return the number of orbs in cell(row, col)
- * 2. The function that return the orb capacity of the cell(row, col)
- * 3. The function that return the color fo the cell(row, col)
- * 4. The function that print out the current board statement
-*************************************************************************/
 
 
 void algorithm_A(Board board, Player player, int index[]){
 
-    // cout << board.get_capacity(0, 0) << endl;
-    // cout << board.get_orbs_num(0, 0) << endl;
-    // cout << board.get_cell_color(0, 0) << endl;
-    // board.print_current_board(0, 0, 0);
-
-    //////////// Random Algorithm ////////////
-    // Here is the random algorithm for your reference, you can delete or comment it.
+    
     int i,j,row,col;
     int max = -1;
     
     int currnum = 0;
-    int color = player.get_color(); //out color
-    int s[5][6];  //score;
+    int color = player.get_color(); 
+    int s[5][6];  
     
-    //red
-    //score initialize
+  
     for(i=0;i<5;i++){
         for(j=0;j<6;j++){
             s[i][j] = 0;
@@ -53,15 +28,15 @@ void algorithm_A(Board board, Player player, int index[]){
     
     
     
-    for ( i = 0; i < 5; i++) //big for get score
+    for ( i = 0; i < 5; i++) 
     {
         for (  j= 0; j < 6; j++)
         {
-            //1
+            
             if( i==0 && j==0 ){
-                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1; //enmy
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1; 
                 else {
-                    if(board.get_orbs_num(i, j)==0) { //empty w 
+                    if(board.get_orbs_num(i, j)==0) { 
                     
                         if( (board.get_orbs_num(0,1)==0) &&  (board.get_orbs_num(1,0)==0))  s[i][j] = 10000;
                         else if( (board.get_orbs_num(0,1)==2) ||  (board.get_orbs_num(1,0)==2) ) {
@@ -77,9 +52,9 @@ void algorithm_A(Board board, Player player, int index[]){
                             s[i][j] = 10000;
                         }
 
-                    } //end empty
+                    } 
 
-                    //one on 
+                    
                     else {
                            if ( ((board.get_orbs_num(0,1)==2)&&(board.get_cell_color(0,1) != color)) ||
                            ((board.get_orbs_num(1,0)==2)&&(board.get_cell_color(1,0) != color))  )  {
@@ -99,13 +74,13 @@ void algorithm_A(Board board, Player player, int index[]){
 
                 }
 
-            } //end(0,0)
+            } 
             
 
             else if ( i==0 && j==5 ){
-                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1; //enmy
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1; 
                 else {
-                    if(board.get_orbs_num(i, j)==0) { //empty w 
+                    if(board.get_orbs_num(i, j)==0) { 
                     
                         if( (board.get_orbs_num(0,4)==0) &&  (board.get_orbs_num(1,5)==0))  s[i][j] = 10000;
                         else if( (board.get_orbs_num(0,4)==2) ||  (board.get_orbs_num(1,5)==2) ) {
@@ -121,9 +96,9 @@ void algorithm_A(Board board, Player player, int index[]){
                             s[i][j] = 10000;
                         }
 
-                    } //end empty
+                    } 
 
-                    //one on 
+                    
                     else {
                            if ( ((board.get_orbs_num(0,4)==2)&&(board.get_cell_color(0,4) != color)) ||
                            ((board.get_orbs_num(1,5)==2)&&(board.get_cell_color(1,5) != color))  )  {
@@ -142,11 +117,11 @@ void algorithm_A(Board board, Player player, int index[]){
                 }
 
 
-            }//end (0,5)
+            }
             else if ( i==4 && j==0 ){
-                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1; //enmy
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
                 else {
-                    if(board.get_orbs_num(i, j)==0) { //empty w 
+                    if(board.get_orbs_num(i, j)==0) { 
                     
                         if( (board.get_orbs_num(4,1)==0) &&  (board.get_orbs_num(3,0)==0))  s[i][j] = 10000;
                         else if( (board.get_orbs_num(4,1)==2) ||  (board.get_orbs_num(3,0)==2) ) {
@@ -162,9 +137,9 @@ void algorithm_A(Board board, Player player, int index[]){
                             s[i][j] = 10000;
                         }
 
-                    } //end empty
+                    } 
 
-                    //one on 
+                   
                     else {
                            if ( ((board.get_orbs_num(4,1)==2)&&(board.get_cell_color(4,1) != color)) ||
                            ((board.get_orbs_num(3,0)==2)&&(board.get_cell_color(3,0) != color))  )  {
@@ -184,11 +159,11 @@ void algorithm_A(Board board, Player player, int index[]){
 
                 }
                 
-            }//end (4,0)
+            }
             else if ( i==4 && j==5 ){
-                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1; //enmy
+                if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1; 
                 else {
-                    if(board.get_orbs_num(i, j)==0) { //empty w 
+                    if(board.get_orbs_num(i, j)==0) { 
                     
                         if( (board.get_orbs_num(4,4)==0) &&  (board.get_orbs_num(3,5)==0))  s[i][j] = 10000;
                         else if( (board.get_orbs_num(4,4)==2) ||  (board.get_orbs_num(3,5)==2) ) {
@@ -204,9 +179,9 @@ void algorithm_A(Board board, Player player, int index[]){
                             s[i][j] = 10000;
                         }
 
-                    } //end empty
+                    } 
 
-                    //one on 
+                   
                     else {
                            if ( ((board.get_orbs_num(4,4)==2)&&(board.get_cell_color(4,4) != color)) ||
                            ((board.get_orbs_num(3,5)==2)&&(board.get_cell_color(3,5) != color))  )  {
@@ -226,8 +201,8 @@ void algorithm_A(Board board, Player player, int index[]){
 
                 }
                 
-            }  //end (4,5)
-            //2
+            }  
+            
             else if ( i==0 && j==1 ){
                 if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
                 else
@@ -287,7 +262,7 @@ void algorithm_A(Board board, Player player, int index[]){
                         
                     }
                    else
-                    { //2 on
+                    { 
                         if( (board.get_cell_color(0, 0)!=color)&&(board.get_orbs_num(0,0)==1) ){
                             s[i][j] = 20000;
                         }
@@ -306,13 +281,13 @@ void algorithm_A(Board board, Player player, int index[]){
                 }
                 
                 
-            }  //end (0,1)
+            }  
 
             else if ( i==0 && j==4 ){ 
                 if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
                 else
                 {
-                    if( board.get_orbs_num(i,j)==0 ) {//要改!!
+                    if( board.get_orbs_num(i,j)==0 ) {
                         if( (board.get_cell_color(0, 0)!=color) && (board.get_cell_color(0, 0)!='w') ){
                           s[i][j] = 1;
                         }
@@ -384,7 +359,7 @@ void algorithm_A(Board board, Player player, int index[]){
                    
                 }
                 
-            }//end (0,4)
+            }
 
             else if ( i==4 && j==1 ){
                 if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
@@ -535,8 +510,8 @@ void algorithm_A(Board board, Player player, int index[]){
                    
                 }
                 
-            }//end 4 4
-            else if ( i==1 && j==0 ){ //2'
+            }
+            else if ( i==1 && j==0 ){ 
                 if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
                 else
                 {
@@ -609,7 +584,7 @@ void algorithm_A(Board board, Player player, int index[]){
                     
                    
                 }
-            } //end 10
+            } 
             else if ( i==1 && j==5 ){
                 if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
                 else
@@ -685,7 +660,7 @@ void algorithm_A(Board board, Player player, int index[]){
                 }
                 
             }
-            else if ( i==3 && j==0 ){//?if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
+            else if ( i==3 && j==0 ){
                 if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
                 else
                 {
@@ -837,7 +812,7 @@ void algorithm_A(Board board, Player player, int index[]){
                 
             }
 
-            //3
+            
             else if ( i==0 && j==2 ){
                 if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
                 else
@@ -1039,7 +1014,7 @@ void algorithm_A(Board board, Player player, int index[]){
                }
             }
             
-            //4
+            
             else if ( i==2 && j==0 ){
                 if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
                 else
@@ -1136,7 +1111,7 @@ void algorithm_A(Board board, Player player, int index[]){
                     } 
                 }
             }
-            //5
+            
             else if ( i==1 && j==1 ){
                 if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
                 else
@@ -1337,7 +1312,7 @@ void algorithm_A(Board board, Player player, int index[]){
                 }
                 
             }
-            //6
+            
             else if ( i==1 && j==2 ){
                 if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
                 else{
@@ -1530,7 +1505,7 @@ void algorithm_A(Board board, Player player, int index[]){
                     }
                 }    
             }
-            //7
+            
             else if ( i==2 && j==1 ){
                 if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
                 else{
@@ -1631,7 +1606,7 @@ void algorithm_A(Board board, Player player, int index[]){
                 }
                 
             }
-            //8
+            
             else if ( i==2 && j==2 ){
                 if((board.get_cell_color(i, j)!=color) && (board.get_cell_color(i, j) != 'w' ))  s[i][j] =-1;
                 else{
@@ -1683,7 +1658,7 @@ void algorithm_A(Board board, Player player, int index[]){
                 
             }
             
-            else  //( i=2 && j=3 )
+            else  
             {
                 if((board.get_cell_color(2, 3)!=color) && (board.get_cell_color(2, 3) != 'w' ))  s[i][j] =-1;
                 else{
@@ -1737,9 +1712,9 @@ void algorithm_A(Board board, Player player, int index[]){
 
         }
 
-    } //end ifor //set the score
+    } 
 
-    //choose optimal position
+    
     for ( i = 0; i < 5; i++)
     {
         for ( j = 0; j < 6; j++)
@@ -1763,6 +1738,6 @@ void algorithm_A(Board board, Player player, int index[]){
     
 
 
-    index[0] = row; //row
-    index[1] = col; //col
+    index[0] = row; 
+    index[1] = col; 
 }
